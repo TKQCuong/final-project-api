@@ -13,6 +13,7 @@ MarkupSafe==1.1.1
 numpy==1.17.4
 pandas==0.25.3
 prettytable==0.7.2
+psycopg2==2.8.4
 pybars3==0.9.7
 PyMeta3==0.5.1
 python-dateutil==2.8.1
