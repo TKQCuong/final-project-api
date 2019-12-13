@@ -8,9 +8,10 @@ class User(UserMixin, db.Model):
     username = db.Column(db.String (200), nullable=False)
     mobile = db.Column(db.String, nullable=False, unique=True)
     email = db.Column(db.String (200), index = True, unique=True)
-    address = db.Column(db.String(200), nullable=False)
+    # address = db.Column(db.String(200), nullable=False)
     password_hash = db.Column(db.String(1200), nullable=False)
     tokens = db.relationship("Token", backref="user", lazy=True)
+    order = db.relationship("Order", backref="user", lazy=True)
     
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
@@ -32,7 +33,6 @@ class User(UserMixin, db.Model):
             "mobile": self.mobile,
             "email": self.email
         }
-
 
 class Token(db.Model):
     __tablename__="tokens"

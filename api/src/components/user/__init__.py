@@ -40,12 +40,12 @@ def register():
         email = data['email']
         password_hash = data['password']
         mobile = data['mobile']
-        address = data['address']
+        # address = data['address']
         user = User.query.filter_by(email = email).first()
         if user:
             print("You've already have account, please sign in")
         if not user:
-            user = User(email=email, username=username, mobile=mobile, address=address)
+            user = User(email=email, username=username, mobile=mobile)
             user.set_password(password_hash)
             db.session.add(user)
             db.session.commit()
@@ -54,7 +54,7 @@ def register():
             db.session.add(new_token)
             db.session.commit()
             print("Registered success!", user.email)
-            return jsonify({'email':email, 'username': username, 'mobile': mobile, 'address':address, "token": new_token.uuid})
+            return jsonify({'email':email, 'username': username, 'mobile': mobile, "token": new_token.uuid})
     return jsonify({'false' : 'false'})
 
 @user_blueprint.route('/getinfo', methods=['POST', 'GET'])
